@@ -96,8 +96,11 @@ document.getElementById("myForm").addEventListener("submit", function(e) {
     fetch("https://script.google.com/macros/s/AKfycbyOajNmxt0DQqHtjZ8r7rCVD1p46B3xZ8HqhZD667cjy_5qd7YA8QkFXG-cjp_W-LWo/exec", { method: "POST", body: data})
     .then(response => response.json())
     .then(result => {
-        alert("Message sent successfully!");
-        this.reset();  // Clear the form
+        const message = document.createElement('p');
+    message.textContent = "Message sent successfully!";
+    message.style.color = "green";
+    this.appendChild(message);
+    this.reset();
     })
     .catch(error => {
         console.error("Error:", error);
