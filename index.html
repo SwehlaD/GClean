@@ -144,6 +144,30 @@ document.getElementById("downloadReports").addEventListener("click", function() 
 });
 </script>
 
+<script>
+document.getElementById("myForm").addEventListener("submit", function(e) {
+    e.preventDefault();  // Prevent default form submission
+
+    // Collect form data
+    const formData = new FormData(this);
+    const data = new URLSearchParams(formData);
+
+    // Send data to Google Apps Script
+    fetch("YOUR_WEB_APP_URL_HERE", {  // <-- Replace with your Google Apps Script URL
+        method: "POST",
+        body: data
+    })
+    .then(response => response.json())
+    .then(result => {
+        alert("Message sent successfully!");
+        document.getElementById("myForm").reset();  // Clear the form
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("There was an error sending your message.");
+    });
+});
+</script>
 
 </body>
 </html>
